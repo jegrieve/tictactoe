@@ -49,3 +49,11 @@ table tr td:last-child {
     color: white;
     font-size: 2em;
 }
+
+button {
+    width: 100px;
+    top: 100px;
+    font-size: 15px;
+    background-color: rgba(55, 238, 10, 0.8);
+    font-weight: bold;
+}
