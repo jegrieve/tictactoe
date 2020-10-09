@@ -1,43 +1,42 @@
-
-const Gameboard = (() => {
-    const board = [[" "," "," "],[" "," "," "],[" "," "," "]];
-    const gameOver = () => {
-        return false;
-    };
-    //win condition
-    const placeSymbol = (sym, pos) => {
-        [y,x] = pos;
-        board[y][x] = sym;
-    };
-    return {board, gameOver, placeSymbol};
+const gameBoard = (() => {
+    const board = Array.from(Array(9).keys());
+    const boardWinCombos = [
+        [0,1,2],[3,4,5],[6,7,8], //horizontal win
+        [0,3,6],[1,4,7],[2,5,8], //veritcal win
+        [0,4,8],[2,4,6]          //diagonal win
+    ];
+    return {board, boardWinCombos};
 })();
 
-const Player = (name, symbol) => {
-    this.name = name;
-    this.symbol = symbol;
-    const getInput = () => { //temporary
-        let input = prompt("Enter pos (EX: 0 0 )").split(" ");
-        return input;
-    };
-    return {name, symbol, getInput}
-};
-
-const Game = (board, ...players) => {
-    while (!board.gameOver()) {
-        let currentPlayer = players[0];
-        input = currentPlayer.getInput();
-        posInput = input.map(Number);
-        board.placeSymbol(currentPlayer.symbol, posInput);
-        renderGame(board.board);
-        previousPlayer = players.shift();
-        players.push(previousPlayer);
-    };
-};
-
-const renderGame = (board) => {
-    alert(`${board}`);
-}
+const handlers = (() => {
+    const cells = document.querySelectorAll(".cells");
+})();
 
 
 
+// const gameBoard = (() => {
+//     const board = [["","",""],["","",""],["","",""]];
+//     const buttonElements = document.querySelectorAll(".inputButton")
 
+//     const addEventListeners = () => {
+//         buttonElements.forEach((elm) => {
+//             elm.addEventListener("click", function() {console.log("hi")}) // change func
+//         })
+//     };
+//     return {board, addEventListeners}
+// })();
+
+
+// const Player = (name, symbol) => {
+//     this.name = name;
+//     this.symbol = symbol;
+//     return {name, symbol}
+// };
+
+
+// const Game = (player1, player2) => {
+// let players = [player1, player2]
+// const renderGame = () => {
+    
+//     };
+// };
