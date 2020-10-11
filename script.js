@@ -23,12 +23,12 @@ const gamePlay = (() => {
         for (let i = 0; i < cells.length; i++) {
             cells[i].innerText = "";
             cells[i].style.removeProperty("background-color");
-            cells[i].addEventListener("click", this.takeTurn.bind(this), false);
+            cells[i].addEventListener("click", gamePlay.takeTurn, false);
         };
     };
     const takeTurn = function(clickEvent) {
         if (typeof gameData.board[clickEvent.target.id] === "number") {
-            this.turn(clickEvent.target.id, players.human);
+            gamePlay.turn(clickEvent.target.id, players.human);
             if (!checkTie()) turn(bestSpot(), players.computer);
         };
     };
@@ -56,7 +56,7 @@ const gamePlay = (() => {
             gameWon.player == players.human ? "green" : "red";
         }
         for (let i = 0; i < gameData.cells.length; i++) {
-            gameData.cells[i].removeEventListener("click", takeTurn, false);
+            gameData.cells[i].removeEventListener("click", gamePlay.takeTurn, false);
         }
         declareWinner(gameWon.player == players.human ? "You win!" : "You Lose!")
     };
@@ -145,101 +145,3 @@ const checkTie = () => {
 }
 
 gamePlay.startGame();
-
-
-
-// const playGame = (() => {
-    
-//     const startGame = function() {
-//         document.querySelector(".endgame").style.display = "none";
-//             const cells = handlers.cells
-//         for (let i = 0; i < cells.length; i ++) {
-//             cells[i].innerText = "";
-//             cells[i].style.removeProperty("background-color");
-//             cells[i].addEventListener("click", this.takeTurn.bind(this), false);
-//         };
-//     };
-
-//     const takeTurn = function(e) {
-//         if (typeof gameBoard.board[e.target.id] === "number") {
-//             this.turn(e.target.id, humanPlayer);
-//             //  if (!checkTie()) turn(bestSpot(), aiPlayer);
-//         };
-//       };
-
-//     const turn = function(squareId, player) {
-//         gameBoard.board[squareId] = player.sym;
-//         document.getElementById(squareId).innerText = player.sym;
-//         let gameWon = this.checkWin(gameBoard.board, player)
-//         if (gameWon) this.gameOver(gameWon)
-//     };
-
-//     const checkWin = function(board, player) {
-//         player = player.sym
-//         let plays = board.reduce((a,e,i) => 
-//         (e === player) ? a.concat(i) : a, []); 
-//         let gameWon = null;
-//         for (let [index, win] of gameBoard.boardWinCombos.entries()) {
-//             if (win.every((elem) => plays.indexOf(elem) > -1)) {
-//                 gameWon = {index: index, player: player};
-//             break;  
-//         };
-//     };
-//     return gameWon;
-// };
-
-//     const gameOver = function(gameWon) {
-//         const cells = handlers.cells
-//         for (let index of gameBoard.boardWinCombos[gameWon.index]) {
-//             document.getElementById(index).style.backgroundColor = 
-//             gameWon.player == humanPlayer.sym ? "blue" : "red";
-//         }
-//         for (let i = 0; i < cells.length; i++) {
-//             cells[i].removeEventListener("click", this.turn.bind(this), false);
-//         }
-//         declareWinner(gameWon.player == humanPlayer.sym ? "You win!" : "You Lose!")
-//     };
-
-//     const declareWinner = function(who) {
-//         document.querySelector(".endgame").style.display = "block";
-//         document.querySelector(".endgame .text").innerText = who;
-//     }
-//     return {startGame, takeTurn, turn, checkWin, gameOver, declareWinner}
-// })();
-
-// const humanPlayer = new Player("X")
-// const aiPlayer = new Player("O")
-
-// playGame.startGame()
-
-
-
-
-
-
-// const gameBoard = (() => {
-//     const board = [["","",""],["","",""],["","",""]];
-//     const buttonElements = document.querySelectorAll(".inputButton")
-
-//     const addEventListeners = () => {
-//         buttonElements.forEach((elm) => {
-//             elm.addEventListener("click", function() {console.log("hi")}) // change func
-//         })
-//     };
-//     return {board, addEventListeners}
-// })();
-
-
-// const Player = (name, symbol) => {
-//     this.name = name;
-//     this.symbol = symbol;
-//     return {name, symbol}
-// };
-
-
-// const Game = (player1, player2) => {
-// let players = [player1, player2]
-// const renderGame = () => {
-    
-//     };
-// };
