@@ -1,3 +1,7 @@
+h1 {
+    text-align:center;
+}
+
 td {
     border: 2px solid black;
     height: 100px;
@@ -56,4 +60,8 @@ button {
     font-size: 15px;
     background-color: rgba(55, 238, 10, 0.8);
     font-weight: bold;
+}
+
+.replay {
+    text-align: center;
 }
